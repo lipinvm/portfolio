@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipi Shree | CSE Student & Creative Builder</title>
+    <meta name="description" content="Portfolio of Lipi Shree, a 2nd Year B.Tech CSE student at Lovely Professional University, exploring technology, building projects, and learning by doing.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        'soft-pink': '#F4E7E7',
+                        'dusty-rose': '#D4A5A5',
+                        'muted-mauve': '#B784A7',
+                        'deep-plum': '#5D3A52',
+                        charcoal: '#2D2A32',
+                        'hot-pink': '#FF6B9D',
+                        'dark-bg': '#1A1518',
+                        'dark-surface': '#251E23',
+                        'dark-text': '#FDFBF7',
+                        'dark-text-muted': '#D4C5C9',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Outfit"', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(93, 58, 82, 0.08)',
+                        'soft-dark': '0 10px 40px -10px rgba(0, 0, 0, 0.5)',
+                        'glow': '0 0 40px -10px rgba(255, 107, 157, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .dark .grain-overlay { opacity: 0.05; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #D4A5A5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #B784A7; }
+        .dark ::-webkit-scrollbar-track { background: #1A1518; }
+        .dark ::-webkit-scrollbar-thumb { background: #5D3A52; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 5s ease-in-out infinite 1s; }
+
+        .glass {
+            background: rgba(253, 251, 247, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 165, 165, 0.2);
+        }
+        .dark .glass {
+            background: rgba(26, 21, 24, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-cream dark:bg-dark-bg text-charcoal dark:text-dark-text font-sans antialiased selection:bg-soft-pink selection:text-deep-plum dark:selection:bg-deep-plum dark:selection:text-cream transition-colors duration-300">
+
+    <div class="grain-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-40 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#home" class="font-serif text-2xl font-bold text-deep-plum dark:text-cream tracking-wide">Lipi Shree<span class="text-hot-pink">.</span></a>
+                
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-sm font-medium hover:text-hot-pink transition-colors dark:text-dark-text-muted dark:hover:text-cream">Home</a>
+                    <a href="#about" class="text-sm font-medium hover:text-hot-pink transition-colors dark:text-dark-text-muted dark:hover:text-cream">About</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-hot-pink transition-colors dark:text-dark-text-muted dark:hover:text-cream">Skills</a>
+                    <a href="#experience" class="text-sm font-medium hover:text-hot-pink transition-colors dark:text-dark-text-muted dark:hover:text-cream">Experience</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-hot-pink transition-colors dark:text-dark-text-muted dark:hover:text-cream">Projects</a>
+                    <a href="#credentials" class="text-sm font-medium hover:text-hot-pink transition-colors dark:text-dark-text-muted dark:hover:text-cream">Credentials</a>
+                    
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-soft-pink dark:hover:bg-white/10 transition-colors" aria-label="Toggle Dark Mode">
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-hot-pink"></i>
+                        <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-deep-plum"></i>
+                    </button>
+
+                    <a href="#contact" class="px-5 py-2 bg-deep-plum text-cream text-sm font-medium rounded-full hover:bg-hot-pink transition-colors duration-300">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4 md:hidden">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-soft-pink dark:hover:bg-white/10 transition-colors" aria-label="Toggle Dark Mode">
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-hot-pink"></i>
+                        <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-deep-plum"></i>
+                    </button>
+                    <button class="text-deep-plum dark:text-cream" id="mobile-menu-btn">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="md:hidden hidden bg-cream dark:bg-dark-surface border-t border-soft-pink dark:border-white/10" id="mobile-menu">
+            <div class="px-6 py-4 space-y-3">
+                <a href="#home" class="block text-sm font-medium py-2 dark:text-dark-text-muted dark:hover:text-cream">Home</a>
+                <a href="#about" class="block text-sm font-medium py-2 dark:text-dark-text-muted dark:hover:text-cream">About</a>
+                <a href="#skills" class="block text-sm font-medium py-2 dark:text-dark-text-muted dark:hover:text-cream">Skills</a>
+                <a href="#experience" class="block text-sm font-medium py-2 dark:text-dark-text-muted dark:hover:text-cream">Experience</a>
+                <a href="#projects" class="block text-sm font-medium py-2 dark:text-dark-text-muted dark:hover:text-cream">Projects</a>
+                <a href="#credentials" class="block text-sm font-medium py-2 dark:text-dark-text-muted dark:hover:text-cream">Credentials</a>
+                <a href="#contact" class="block text-sm font-medium py-2 text-hot-pink">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute top-32 left-[10%] deco-star animate-float text-dusty-rose opacity-40"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
+        <div class="absolute bottom-32 right-[10%] deco-star animate-float-delayed text-dusty-rose opacity-40"><i data-lucide="star" class="w-4 h-4"></i></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-soft-pink dark:bg-deep-plum rounded-full blur-3xl opacity-30 dark:opacity-20 -z-10"></div>
+
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 w-full text-center" data-aos="fade-up" data-aos-duration="1000">
+            <span class="font-hand text-3xl lg:text-4xl text-muted-mauve mb-6 block">learning.building.experimenting</span>
+            
+            <h1 class="font-serif text-6xl lg:text-8xl font-bold text-deep-plum dark:text-cream leading-[0.9] mb-6">
+                Hey, I’m <span class="italic text-hot-pink">Lipi.</span>
+            </h1>
+            
+            <p class="text-lg lg:text-xl text-charcoal/80 dark:text-dark-text-muted mb-4 font-medium tracking-wide">
+                B.Tech CSE Student · Building with Code & Creativity
+            </p>
+            
+            <p class="text-base lg:text-lg text-charcoal/70 dark:text-dark-text-muted/80 mb-8 leading-relaxed max-w-2xl mx-auto">
+                I’m a second-year Computer Science student at Lovely Professional University, exploring code, web technologies, and creative ways to turn ideas into things I can actually build.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <span class="px-4 py-2 bg-white dark:bg-dark-surface border border-soft-pink dark:border-white/10 rounded-full text-sm font-medium text-deep-plum dark:text-cream shadow-soft dark:shadow-soft-dark">Python</span>
+                <span class="px-4 py-2 bg-white dark:bg-dark-surface border border-soft-pink dark:border-white/10 rounded-full text-sm font-medium text-deep-plum dark:text-cream shadow-soft dark:shadow-soft-dark">C++</span>
+                <span class="px-4 py-2 bg-white dark:bg-dark-surface border border-soft-pink dark:border-white/10 rounded-full text-sm font-medium text-deep-plum dark:text-cream shadow-soft dark:shadow-soft-dark">DSA</span>
+                <span class="px-4 py-2 bg-deep-plum dark:bg-hot-pink text-cream rounded-full text-sm font-medium shadow-soft dark:shadow-soft-dark">Web Development</span>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 mb-10" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center">
+                    <span class="block text-3xl font-serif font-bold text-deep-plum dark:text-cream">5</span>
+                    <span class="text-xs uppercase tracking-widest text-charcoal/60 dark:text-dark-text-muted/60">Learning Credentials</span>
+                </div>
+                <div class="w-px bg-soft-pink dark:bg-white/10 hidden sm:block"></div>
+                <div class="text-center">
+                    <span class="block text-3xl font-serif font-bold text-deep-plum dark:text-cream">1</span>
+                    <span class="text-xs uppercase tracking-widest text-charcoal/60 dark:text-dark-text-muted/60">Deployed Project</span>
+                </div>
+                <div class="w-px bg-soft-pink dark:bg-white/10 hidden sm:block"></div>
+                <div class="text-center">
+                    <span class="block text-3xl font-serif font-bold text-deep-plum dark:text-cream">30</span>
+                    <span class="text-xs uppercase tracking-widest text-charcoal/60 dark:text-dark-text-muted/60">Hour Community Project</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#projects" class="px-8 py-3.5 bg-deep-plum dark:bg-hot-pink text-cream rounded-full font-medium hover:bg-hot-pink dark:hover:bg-deep-plum transition-all duration-300 shadow-soft dark:shadow-soft-dark hover:shadow-glow flex items-center justify-center gap-2">
+                    Explore My Work <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#contact" class="px-8 py-3.5 border border-deep-plum dark:border-cream/30 text-deep-plum dark:text-cream rounded-full font-medium hover:bg-soft-pink dark:hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2">
+                    Let’s Connect
+                </a>
+                <!-- EASY TO REPLACE: Change href="assets/cv.pdf" to your actual CV file path -->
+                <a href="assets/cv.pdf" download class="px-8 py-3.5 border border-deep-plum dark:border-cream/30 text-deep-plum dark:text-cream rounded-full font-medium hover:bg-soft-pink dark:hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2">
+                    Download CV <i data-lucide="download" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="font-hand text-3xl text-muted-mauve">Curious by default.</span>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-deep-plum dark:text-cream mt-2">Building my way forward.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div data-aos="fade-right">
+                    <p class="text-lg leading-relaxed text-charcoal/80 dark:text-dark-text-muted mb-6">
+                        I’m Lipi Shree, a second-year B.Tech student in Computer Science Engineering at Lovely Professional University. So far, I’ve explored C, C++, Python, web technologies, and DBMS, while building a stronger foundation in Data Structures and Algorithms.
+                    </p>
+                </div>
+
+                <div data-aos="fade-left">
+                    <div class="bg-white dark:bg-dark-surface p-8 rounded-3xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 mb-8">
+                        <h3 class="font-serif text-2xl font-bold text-deep-plum dark:text-cream mb-6 flex items-center gap-2">
+                            <i data-lucide="heart" class="w-5 h-5 text-hot-pink"></i> Things I enjoy
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="group flex items-center gap-3 p-3 bg-cream dark:bg-white/5 rounded-xl border border-transparent dark:border-white/5 hover:-translate-y-1 hover:border-dusty-rose dark:hover:border-hot-pink transition-all duration-300 cursor-default">
+                                <i data-lucide="palette" class="w-5 h-5 text-muted-mauve group-hover:scale-110 group-hover:text-hot-pink transition-transform duration-300"></i>
+                                <span class="font-medium text-sm dark:text-dark-text-muted">Creative work</span>
+                            </div>
+                            <div class="group flex items-center gap-3 p-3 bg-cream dark:bg-white/5 rounded-xl border border-transparent dark:border-white/5 hover:-translate-y-1 hover:border-dusty-rose dark:hover:border-hot-pink transition-all duration-300 cursor-default">
+                                <i data-lucide="cpu" class="w-5 h-5 text-muted-mauve group-hover:scale-110 group-hover:text-hot-pink transition-transform duration-300"></i>
+                                <span class="font-medium text-sm dark:text-dark-text-muted">Exploring tech</span>
+                            </div>
+                            <div class="group flex items-center gap-3 p-3 bg-cream dark:bg-white/5 rounded-xl border border-transparent dark:border-white/5 hover:-translate-y-1 hover:border-dusty-rose dark:hover:border-hot-pink transition-all duration-300 cursor-default">
+                                <i data-lucide="book-open" class="w-5 h-5 text-muted-mauve group-hover:scale-110 group-hover:text-hot-pink transition-transform duration-300"></i>
+                                <span class="font-medium text-sm dark:text-dark-text-muted">Learning new things</span>
+                            </div>
+                            <div class="group flex items-center gap-3 p-3 bg-cream dark:bg-white/5 rounded-xl border border-transparent dark:border-white/5 hover:-translate-y-1 hover:border-dusty-rose dark:hover:border-hot-pink transition-all duration-300 cursor-default">
+                                <i data-lucide="hammer" class="w-5 h-5 text-muted-mauve group-hover:scale-110 group-hover:text-hot-pink transition-transform duration-300"></i>
+                                <span class="font-medium text-sm dark:text-dark-text-muted">Building projects</span>
+                            </div>
+                            <div class="group flex items-center gap-3 p-3 bg-cream dark:bg-white/5 rounded-xl border border-transparent dark:border-white/5 hover:-translate-y-1 hover:border-dusty-rose dark:hover:border-hot-pink transition-all duration-300 cursor-default">
+                                <i data-lucide="trophy" class="w-5 h-5 text-muted-mauve group-hover:scale-110 group-hover:text-hot-pink transition-transform duration-300"></i>
+                                <span class="font-medium text-sm dark:text-dark-text-muted">Hackathons & challenges</span>
+                            </div>
+                            <div class="group flex items-center gap-3 p-3 bg-cream dark:bg-white/5 rounded-xl border border-transparent dark:border-white/5 hover:-translate-y-1 hover:border-dusty-rose dark:hover:border-hot-pink transition-all duration-300 cursor-default">
+                                <i data-lucide="puzzle" class="w-5 h-5 text-muted-mauve group-hover:scale-110 group-hover:text-hot-pink transition-transform duration-300"></i>
+                                <span class="font-medium text-sm dark:text-dark-text-muted">Figuring things out</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface p-6 rounded-3xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-3 flex items-center gap-2">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-hot-pink"></i> Currently Improving
+                        </h3>
+                        <p class="text-charcoal/80 dark:text-dark-text-muted leading-relaxed text-sm">
+                            I’m currently strengthening my understanding of Data Structures and Algorithms, building consistency in C++ practice, and working on expressing technical ideas more clearly through presentations, teaching, and project documentation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education (Section Kept Intact) -->
+    <section id="education" class="py-24 bg-white dark:bg-dark-surface/50">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <h2 class="font-serif text-4xl font-bold text-deep-plum dark:text-cream mb-12 text-center" data-aos="fade-up">Education</h2>
+            
+            <div class="space-y-6">
+                <div class="group p-6 rounded-2xl border border-soft-pink dark:border-white/10 hover:border-dusty-rose hover:shadow-soft dark:hover:shadow-soft-dark transition-all duration-300 bg-cream dark:bg-dark-surface" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-deep-plum dark:text-cream">Lovely Professional University</h3>
+                            <p class="text-lg text-charcoal/80 dark:text-dark-text-muted mt-1">Bachelor of Technology — Computer Science & Engineering</p>
+                            <span class="inline-block mt-3 px-3 py-1 bg-soft-pink dark:bg-deep-plum text-deep-plum dark:text-cream text-xs font-semibold rounded-full">2nd Year · Currently Enrolled</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-deep-plum dark:text-cream">Aug 2025 – Aug 2029</p>
+                            <p class="text-sm text-charcoal/60 dark:text-dark-text-muted/60">Expected Graduation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group p-6 rounded-2xl border border-transparent hover:border-soft-pink dark:hover:border-white/10 hover:bg-cream dark:hover:bg-dark-surface transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-charcoal dark:text-cream">Indraprastha International School</h3>
+                            <p class="text-charcoal/70 dark:text-dark-text-muted">Senior Secondary — PCM</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-charcoal dark:text-cream">Apr 2023 – Mar 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group p-6 rounded-2xl border border-transparent hover:border-soft-pink dark:hover:border-white/10 hover:bg-cream dark:hover:bg-dark-surface transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-charcoal dark:text-cream">GNTL School, Bikhanpura, Muzaffarpur</h3>
+                            <p class="text-charcoal/70 dark:text-dark-text-muted">Secondary School</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-charcoal dark:text-cream">Apr 2021 – Mar 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-24 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-soft-pink dark:bg-deep-plum rounded-full blur-3xl opacity-20 dark:opacity-10 -z-10"></div>
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-deep-plum dark:text-cream">Technologies & Areas I’m Exploring</h2>
+                <p class="mt-4 text-charcoal/70 dark:text-dark-text-muted">Building foundations, one concept at a time.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 hover:-translate-y-1 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-soft-pink dark:bg-deep-plum rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="code-2" class="w-6 h-6 text-deep-plum dark:text-cream"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-4">Programming</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Python</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">C</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">C++</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Data Structures & Algorithms</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 hover:-translate-y-1 transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-soft-pink dark:bg-deep-plum rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="globe" class="w-6 h-6 text-deep-plum dark:text-cream"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-4">Web</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">HTML</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">CSS</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 hover:-translate-y-1 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-soft-pink dark:bg-deep-plum rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="database" class="w-6 h-6 text-deep-plum dark:text-cream"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-4">Database</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">DBMS</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Modern Database Systems</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 hover:-translate-y-1 transition-transform duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-12 h-12 bg-soft-pink dark:bg-deep-plum rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="users" class="w-6 h-6 text-deep-plum dark:text-cream"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-4">Professional</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Communication</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Teaching</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Presentation</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Teamwork</span>
+                        <span class="px-3 py-1 bg-cream dark:bg-white/5 text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Presentation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-24 bg-white dark:bg-dark-surface/50">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="font-hand text-3xl text-muted-mauve">Real-world application</span>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-deep-plum dark:text-cream mt-2">Experience & Responsibility</h2>
+            </div>
+
+            <div class="space-y-8">
+                <div class="relative bg-cream dark:bg-dark-surface rounded-3xl p-8 lg:p-10 border border-soft-pink dark:border-white/10 shadow-soft dark:shadow-soft-dark overflow-hidden" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-hot-pink opacity-5 rounded-bl-full"></div>
+                    
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-deep-plum dark:bg-hot-pink text-cream text-xs font-bold rounded-full uppercase tracking-wider">Community Development Project</span>
+                                <span class="text-sm text-charcoal/60 dark:text-dark-text-muted font-medium">30 Hours</span>
+                            </div>
+                            <h3 class="font-serif text-3xl font-bold text-deep-plum dark:text-cream mb-4">Python, Computers & Digital Literacy</h3>
+                            
+                            <p class="text-charcoal/80 dark:text-dark-text-muted leading-relaxed mb-6">
+                                Through this Community Development Project, I used concepts I was learning as a Computer Science student to introduce younger students to Python, computers, and digital literacy. The focus was on making technical concepts simple, practical, and easy to understand.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                                <div class="bg-white dark:bg-dark-bg p-3 rounded-xl text-center border border-soft-pink dark:border-white/10">
+                                    <span class="block text-2xl font-bold text-hot-pink">6</span>
+                                    <span class="text-xs text-charcoal/70 dark:text-dark-text-muted uppercase tracking-wide">Schools</span>
+                                </div>
+                                <div class="bg-white dark:bg-dark-bg p-3 rounded-xl text-center border border-soft-pink dark:border-white/10">
+                                    <span class="block text-2xl font-bold text-hot-pink">30</span>
+                                    <span class="text-xs text-charcoal/70 dark:text-dark-text-muted uppercase tracking-wide">Hours</span>
+                                </div>
+                                <div class="bg-white dark:bg-dark-bg p-3 rounded-xl text-center border border-soft-pink dark:border-white/10">
+                                    <span class="block text-lg font-bold text-deep-plum dark:text-cream">Python</span>
+                                    <span class="text-xs text-charcoal/70 dark:text-dark-text-muted uppercase tracking-wide">Basics</span>
+                                </div>
+                                <div class="bg-white dark:bg-dark-bg p-3 rounded-xl text-center border border-soft-pink dark:border-white/10">
+                                    <span class="block text-lg font-bold text-deep-plum dark:text-cream">Digital</span>
+                                    <span class="text-xs text-charcoal/70 dark:text-dark-text-muted uppercase tracking-wide">Literacy</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                <span class="text-xs px-3 py-1 bg-soft-pink dark:bg-white/10 text-deep-plum dark:text-cream rounded-full">Teaching</span>
+                                <span class="text-xs px-3 py-1 bg-soft-pink dark:bg-white/10 text-deep-plum dark:text-cream rounded-full">Communication</span>
+                                <span class="text-xs px-3 py-1 bg-soft-pink dark:bg-white/10 text-deep-plum dark:text-cream rounded-full">Presentation</span>
+                                <span class="text-xs px-3 py-1 bg-soft-pink dark:bg-white/10 text-deep-plum dark:text-cream rounded-full">Social Responsibility</span>
+                            </div>
+
+                            <a href="https://lipinvm.github.io/cdp-digital-literacy-python/" target="_blank" rel="noopener noreferrer" 
+                               class="inline-flex items-center gap-2 px-6 py-3 bg-deep-plum dark:bg-hot-pink text-cream rounded-full font-medium hover:bg-hot-pink dark:hover:bg-deep-plum transition-all duration-300 shadow-soft dark:shadow-soft-dark hover:shadow-glow">
+                                Explore Full CDP <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="lg:w-1/3 bg-white dark:bg-dark-bg rounded-2xl p-6 border border-soft-pink dark:border-white/10">
+                            <h4 class="font-serif text-lg font-bold text-deep-plum dark:text-cream mb-4">Institutions Engaged</h4>
+                            <ul class="space-y-3 text-sm text-charcoal/80 dark:text-dark-text-muted">
+                                <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-hot-pink mt-0.5 shrink-0"></i> SHEMFORED International School</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-hot-pink mt-0.5 shrink-0"></i> Holymission Senior Secondary School</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-hot-pink mt-0.5 shrink-0"></i> BP Indraprastha International School</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-hot-pink mt-0.5 shrink-0"></i> CP Indraprastha International School</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-hot-pink mt-0.5 shrink-0"></i> Indraprastha International School</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-hot-pink mt-0.5 shrink-0"></i> SKMI International School</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-cream dark:bg-dark-surface rounded-3xl p-8 border border-soft-pink dark:border-white/10 shadow-soft dark:shadow-soft-dark" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="px-3 py-1 bg-muted-mauve text-white text-xs font-bold rounded-full uppercase tracking-wider">Event Coordination</span>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold text-deep-plum dark:text-cream mb-2">Astitwa — Event Coordinator</h3>
+                            <p class="text-charcoal/80 dark:text-dark-text-muted leading-relaxed mb-4">
+                                Received a Certificate of Appreciation for contributing as a Coordinator at ASTITWA, a multi-event technical fest organised by the School of Computer Science & Engineering at Lovely Professional University.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs px-3 py-1 bg-white dark:bg-dark-bg border border-soft-pink dark:border-white/10 text-charcoal dark:text-dark-text-muted rounded-full">Event coordination</span>
+                                <span class="text-xs px-3 py-1 bg-white dark:bg-dark-bg border border-soft-pink dark:border-white/10 text-charcoal dark:text-dark-text-muted rounded-full">Leadership</span>
+                                <span class="text-xs px-3 py-1 bg-white dark:bg-dark-bg border border-soft-pink dark:border-white/10 text-charcoal dark:text-dark-text-muted rounded-full">Real-time problem solving</span>
+                            </div>
+                        </div>
+                        <div class="shrink-0">
+                            <div class="w-16 h-16 bg-soft-pink dark:bg-deep-plum rounded-full flex items-center justify-center">
+                                <i data-lucide="award" class="w-8 h-8 text-deep-plum dark:text-cream"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project -->
+    <section id="projects" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="font-hand text-3xl text-muted-mauve">Building in public</span>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-deep-plum dark:text-cream mt-2">Featured Project</h2>
+            </div>
+
+            <div class="bg-white dark:bg-dark-surface rounded-3xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 overflow-hidden" data-aos="fade-up">
+                <div class="grid lg:grid-cols-2">
+                    <div class="bg-gradient-to-br from-deep-plum to-muted-mauve p-8 lg:p-12 flex items-center justify-center relative overflow-hidden min-h-[300px]">
+                        <div class="absolute inset-0 opacity-10">
+                            <div class="absolute top-10 left-10 w-20 h-20 border-2 border-white rounded-lg rotate-12"></div>
+                            <div class="absolute bottom-10 right-10 w-16 h-16 border-2 border-white rounded-full"></div>
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-40 border-2 border-white rounded-xl"></div>
+                        </div>
+                        <div class="relative z-10 text-center">
+                            <div class="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 mb-4">
+                                <i data-lucide="cards" class="w-16 h-16 text-cream mx-auto mb-2"></i>
+                                <h3 class="font-serif text-3xl font-bold text-cream">Tikki Topple</h3>
+                                <p class="text-cream/80 text-sm mt-1">Race to 35</p>
+                            </div>
+                            <span class="inline-block px-4 py-1 bg-green-500/20 text-green-300 border border-green-500/30 rounded-full text-xs font-medium">Completed & Deployed</span>
+                        </div>
+                    </div>
+
+                    <div class="p-8 lg:p-12 flex flex-col justify-center">
+                        <h3 class="font-serif text-3xl font-bold text-deep-plum dark:text-cream mb-4">Tikki Topple — Race to 35</h3>
+                        <p class="text-charcoal/80 dark:text-dark-text-muted leading-relaxed mb-6">
+                            Tikki Topple is a browser-based multiplayer card game where players rearrange a stack strategically to score points and reach 35 first. Built with modular game logic, UI, and sound while exploring front-end development and interactive browser-based experiences.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="px-3 py-1 bg-cream dark:bg-dark-bg text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">HTML</span>
+                            <span class="px-3 py-1 bg-cream dark:bg-dark-bg text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">CSS</span>
+                            <span class="px-3 py-1 bg-cream dark:bg-dark-bg text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">JavaScript</span>
+                            <span class="px-3 py-1 bg-cream dark:bg-dark-bg text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">Git</span>
+                            <span class="px-3 py-1 bg-cream dark:bg-dark-bg text-charcoal dark:text-dark-text-muted text-sm rounded-full border border-soft-pink dark:border-white/10">GitHub Pages</span>
+                        </div>
+
+                        <a href="https://lipinvm.github.io/tikki-topple/" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 px-8 py-3 bg-deep-plum dark:bg-hot-pink text-cream rounded-full font-medium hover:bg-hot-pink dark:hover:bg-deep-plum transition-all duration-300 w-fit shadow-soft dark:shadow-soft-dark hover:shadow-glow">
+                            Play Tikki Topple <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Credentials -->
+    <section id="credentials" class="py-24 bg-white dark:bg-dark-surface/50">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-deep-plum dark:text-cream">Certifications & Credentials</h2>
+                <p class="mt-4 text-charcoal/70 dark:text-dark-text-muted max-w-2xl mx-auto">
+                    These certifications reflect my ongoing effort to strengthen both technical foundations and professional skills alongside my university studies.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="https://drive.google.com/file/d/1wH_9GI6tTbO4kToohHM5LGDhBHrNZmNV/view?usp=drive_link" target="_blank" rel="noopener noreferrer" 
+                   class="block bg-cream dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 hover:shadow-soft dark:hover:shadow-soft-dark hover:-translate-y-1 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 bg-soft-pink dark:bg-deep-plum rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                            <i data-lucide="file-badge" class="w-5 h-5 text-deep-plum dark:text-cream"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-charcoal/40 dark:text-dark-text-muted/40 group-hover:text-hot-pink transition-colors"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-2">Basics of Motivation and Leadership</h3>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-4">UniAthena / Cambridge International Qualifications</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-medium text-hot-pink group-hover:gap-2 transition-all">
+                        View Certificate <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </span>
+                </a>
+
+                <a href="https://drive.google.com/file/d/19su1J54xtTXf5owU1vxTeC4JW5czH_8_/view?usp=drive_link" target="_blank" rel="noopener noreferrer" 
+                   class="block bg-cream dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 hover:shadow-soft dark:hover:shadow-soft-dark hover:-translate-y-1 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 bg-soft-pink dark:bg-deep-plum rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                            <i data-lucide="file-badge" class="w-5 h-5 text-deep-plum dark:text-cream"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-charcoal/40 dark:text-dark-text-muted/40 group-hover:text-hot-pink transition-colors"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-2">Fundamentals of Python 1</h3>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-4">Infosys Springboard</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-medium text-hot-pink group-hover:gap-2 transition-all">
+                        View Certificate <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </span>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1DE6oPFFubvRD6kkY0P_zoL3t9A59lbWV/view?usp=drive_link" target="_blank" rel="noopener noreferrer" 
+                   class="block bg-cream dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 hover:shadow-soft dark:hover:shadow-soft-dark hover:-translate-y-1 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 bg-soft-pink dark:bg-deep-plum rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                            <i data-lucide="file-badge" class="w-5 h-5 text-deep-plum dark:text-cream"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-charcoal/40 dark:text-dark-text-muted/40 group-hover:text-hot-pink transition-colors"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-2">Fundamentals of Python 2</h3>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-4">Infosys Springboard</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-medium text-hot-pink group-hover:gap-2 transition-all">
+                        View Certificate <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </span>
+                </a>
+
+                <a href="https://drive.google.com/file/d/11kxL4i6piVwmOmCJBtJFRuo15RRs51g7/view?usp=drive_link" target="_blank" rel="noopener noreferrer" 
+                   class="block bg-cream dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 hover:shadow-soft dark:hover:shadow-soft-dark hover:-translate-y-1 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 bg-soft-pink dark:bg-deep-plum rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                            <i data-lucide="server" class="w-5 h-5 text-deep-plum dark:text-cream"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-charcoal/40 dark:text-dark-text-muted/40 group-hover:text-hot-pink transition-colors"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-2">Mastering DevOps</h3>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-4">Infosys Springboard</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-medium text-hot-pink group-hover:gap-2 transition-all">
+                        View Certificate <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </span>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1eXeShNsqwLKOqwUr-uASPBPIjbxVoOyU/view?usp=drive_link" target="_blank" rel="noopener noreferrer" 
+                   class="block bg-cream dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 hover:shadow-soft dark:hover:shadow-soft-dark hover:-translate-y-1 transition-all duration-300 group md:col-span-2 lg:col-span-2" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 bg-soft-pink dark:bg-deep-plum rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                            <i data-lucide="database" class="w-5 h-5 text-deep-plum dark:text-cream"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-charcoal/40 dark:text-dark-text-muted/40 group-hover:text-hot-pink transition-colors"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream mb-2">Modern Database Systems</h3>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-4">Saylor Academy</p>
+                    <span class="inline-flex items-center gap-1 text-sm font-medium text-hot-pink group-hover:gap-2 transition-all">
+                        View Certificate <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hackathons & Participation -->
+    <section class="py-24 bg-cream dark:bg-dark-bg">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="font-hand text-3xl text-muted-mauve">Beyond the Classroom</span>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-deep-plum dark:text-cream mt-2">Hackathons & Participation</h2>
+                <p class="mt-4 text-charcoal/70 dark:text-dark-text-muted">Actively seeking technical exposure and learning experiences.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 shadow-soft dark:shadow-soft-dark" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream">HACK-ADHYAAY</h3>
+                        <span class="px-3 py-1 bg-soft-pink dark:bg-white/10 text-deep-plum dark:text-cream text-xs font-semibold rounded-full">Participation</span>
+                    </div>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-2">24-hour National-Level Hackathon</p>
+                    <p class="text-xs text-charcoal/50 dark:text-dark-text-muted/50">November 28–29, 2025</p>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 shadow-soft dark:shadow-soft-dark" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream">Board2Code Hackathon 2026</h3>
+                        <span class="px-3 py-1 bg-soft-pink dark:bg-white/10 text-deep-plum dark:text-cream text-xs font-semibold rounded-full">Technical Exposure</span>
+                    </div>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-2">Certificate of Participation</p>
+                    <p class="text-xs text-charcoal/50 dark:text-dark-text-muted/50">NetPractice Campus</p>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 shadow-soft dark:shadow-soft-dark" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream">Trivarna 2026 — Capture The Flag</h3>
+                        <span class="px-3 py-1 bg-soft-pink dark:bg-white/10 text-deep-plum dark:text-cream text-xs font-semibold rounded-full">CTF Participation</span>
+                    </div>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-2">Cybersecurity-focused CTF participation</p>
+                    <p class="text-xs text-charcoal/50 dark:text-dark-text-muted/50">2026</p>
+                </div>
+
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl border border-soft-pink dark:border-white/10 shadow-soft dark:shadow-soft-dark" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-serif text-xl font-bold text-deep-plum dark:text-cream">National Internet Day 2025</h3>
+                        <span class="px-3 py-1 bg-soft-pink dark:bg-white/10 text-deep-plum dark:text-cream text-xs font-semibold rounded-full">Event Participation</span>
+                    </div>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted mb-2">School of Computer Science & Engineering, LPU with EventViewz</p>
+                    <p class="text-xs text-charcoal/50 dark:text-dark-text-muted/50">2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="py-24 bg-soft-pink/30 dark:bg-deep-plum/20">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <h2 class="font-serif text-4xl font-bold text-deep-plum dark:text-cream text-center mb-12" data-aos="fade-up">What do I bring?</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <i data-lucide="hammer" class="w-8 h-8 text-hot-pink mx-auto mb-3"></i>
+                    <p class="font-serif text-xl text-deep-plum dark:text-cream">"I learn by doing."</p>
+                </div>
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <i data-lucide="message-circle" class="w-8 h-8 text-hot-pink mx-auto mb-3"></i>
+                    <p class="font-serif text-xl text-deep-plum dark:text-cream">"I can explain technical ideas simply."</p>
+                </div>
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <i data-lucide="refresh-cw" class="w-8 h-8 text-hot-pink mx-auto mb-3"></i>
+                    <p class="font-serif text-xl text-deep-plum dark:text-cream">"I adapt when things don’t go according to plan."</p>
+                </div>
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <i data-lucide="lightbulb" class="w-8 h-8 text-hot-pink mx-auto mb-3"></i>
+                    <p class="font-serif text-xl text-deep-plum dark:text-cream">"I enjoy creative problem-solving."</p>
+                </div>
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 text-center" data-aos="fade-up" data-aos-delay="500">
+                    <i data-lucide="book-open" class="w-8 h-8 text-hot-pink mx-auto mb-3"></i>
+                    <p class="font-serif text-xl text-deep-plum dark:text-cream">"I’m comfortable learning something new."</p>
+                </div>
+                <div class="bg-white dark:bg-dark-surface p-6 rounded-2xl shadow-soft dark:shadow-soft-dark border border-soft-pink dark:border-white/10 text-center" data-aos="fade-up" data-aos-delay="600">
+                    <i data-lucide="heart-handshake" class="w-8 h-8 text-hot-pink mx-auto mb-3"></i>
+                    <p class="font-serif text-xl text-deep-plum dark:text-cream">"I bring curiosity, communication and a willingness to contribute."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Direction -->
+    <section class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-deep-plum"></div>
+        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#FF6B9D 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center" data-aos="zoom-in">
+            <h2 class="font-serif text-5xl lg:text-7xl font-bold text-cream mb-8 tracking-tight">BUILD. LEARN. GROW.</h2>
+            <p class="text-lg lg:text-xl text-cream/80 leading-relaxed max-w-3xl mx-auto">
+                My immediate goal is to strengthen my programming, DSA and development skills, build meaningful projects and discover the area of technology where I can do my best work. Long term, I want to build a career that gives me growth, independence and strong financial opportunities.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-white dark:bg-dark-surface/50">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="font-serif text-4xl lg:text-5xl font-bold text-deep-plum dark:text-cream mb-4" data-aos="fade-up">Let’s make something cool.</h2>
+            <p class="text-charcoal/70 dark:text-dark-text-muted mb-12" data-aos="fade-up">Feel free to reach out or explore my work.</p>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-12" data-aos="fade-up">
+                <a href="mailto:lipishree3012@gmail.com" class="flex items-center gap-2 px-6 py-3 bg-cream dark:bg-dark-surface border border-soft-pink dark:border-white/10 rounded-full text-deep-plum dark:text-cream font-medium hover:bg-soft-pink dark:hover:bg-white/5 transition-colors">
+                    <i data-lucide="mail" class="w-4 h-4"></i> lipishree3012@gmail.com
+                </a>
+                <a href="https://github.com/lipinvm/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3 bg-cream dark:bg-dark-surface border border-soft-pink dark:border-white/10 rounded-full text-deep-plum dark:text-cream font-medium hover:bg-soft-pink dark:hover:bg-white/5 transition-colors">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/lipinvm/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3 bg-cream dark:bg-dark-surface border border-soft-pink dark:border-white/10 rounded-full text-deep-plum dark:text-cream font-medium hover:bg-soft-pink dark:hover:bg-white/5 transition-colors">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto" data-aos="fade-up">
+                <a href="https://lipinvm.github.io/tikki-topple/" target="_blank" rel="noopener noreferrer" class="p-6 bg-cream dark:bg-dark-surface rounded-2xl border border-soft-pink dark:border-white/10 hover:border-hot-pink hover:shadow-soft dark:hover:shadow-soft-dark transition-all group text-left">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-serif text-xl font-bold text-deep-plum dark:text-cream">Tikki Topple</span>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 text-hot-pink group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                    </div>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted">Featured Project · Browser-based multiplayer card game</p>
+                </a>
+                
+                <a href="https://lipinvm.github.io/cdp-digital-literacy-python/" target="_blank" rel="noopener noreferrer" class="p-6 bg-cream dark:bg-dark-surface rounded-2xl border border-soft-pink dark:border-white/10 hover:border-hot-pink hover:shadow-soft dark:hover:shadow-soft-dark transition-all group text-left">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-serif text-xl font-bold text-deep-plum dark:text-cream">CDP Case Study</span>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 text-hot-pink group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                    </div>
+                    <p class="text-sm text-charcoal/70 dark:text-dark-text-muted">Community Development · Digital Literacy across 6 schools</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-cream dark:bg-dark-bg border-t border-soft-pink dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-center gap-6">
+            <div class="flex justify-center gap-6">
+                <a href="https://github.com/lipinvm/" target="_blank" rel="noopener noreferrer" class="text-charcoal/60 dark:text-dark-text-muted hover:text-deep-plum dark:hover:text-hot-pink transition-colors duration-300 transform hover:-translate-y-1" aria-label="GitHub Profile">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/lipinvm/" target="_blank" rel="noopener noreferrer" class="text-charcoal/60 dark:text-dark-text-muted hover:text-deep-plum dark:hover:text-hot-pink transition-colors duration-300 transform hover:-translate-y-1" aria-label="LinkedIn Profile">
+                    <i data-lucide="linkedin" class="w-6 h-6"></i>
+                </a>
+            </div>
+            <p class="text-sm text-charcoal/60 dark:text-dark-text-muted/60">© 2026 Lipi Shree. All rights reserved.</p>
+            <p class="font-hand text-xl text-muted-mauve">Built with curiosity & caffeine.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        const themeToggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
+        const html = document.documentElement;
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        themeToggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                if (html.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-soft');
+            } else {
+                navbar.classList.remove('shadow-soft');
+            }
+        });
+    </script>
+</body>
+</html>
